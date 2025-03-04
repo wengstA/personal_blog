@@ -8,12 +8,14 @@ interface TypewriterEffectProps {
   }[];
   className?: string;
   cursorClassName?: string;
+  noLoop?: boolean;
 }
 
 export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   words,
   className,
   cursorClassName,
+  noLoop = false,
 }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
@@ -29,9 +31,15 @@ export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
         
         // If completed typing current word
         if (currentText.length === currentWord.length) {
-          // Pause before starting to delete
-          setTypingSpeed(1500);
-          setIsDeleting(true);
+          // If this is the last word and noLoop is true, don't delete
+          if (noLoop && currentWordIndex === words.length - 1) {
+            // Just stay here indefinitely
+            setTypingSpeed(Infinity);
+          } else {
+            // Pause before starting to delete
+            setTypingSpeed(1500);
+            setIsDeleting(true);
+          }
         } else {
           // Normal typing speed
           setTypingSpeed(150);
@@ -57,24 +65,20 @@ export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
   }, [currentText, currentWordIndex, isDeleting, typingSpeed, words]);
 
   return (
-    <div className={cn("flex items-center space-x-1", className)}>
-      <span className="inline-block">
-        {words.map((word, idx) => (
-          <span
-            key={idx}
-            className={cn(
-              "absolute opacity-0",
-              idx === currentWordIndex && "opacity-100",
-              word.className
-            )}
-          >
-            {idx === currentWordIndex ? currentText : word.text}
-          </span>
-        ))}
-      </span>
+    <div className={cn("flex flex-row items-center gap-[2px]", className)}>
+      {/* 创建一个固定宽度的容器来保持文字位置稳定 */}
+      <div className="relative min-w-[20px] whitespace-nowrap">
+        {/* 当前显示的文字 */}
+        <span className={cn(
+          words[currentWordIndex]?.className
+        )}>
+          {currentText}
+        </span>
+      </div>
+      {/* 光标 */}
       <span
         className={cn(
-          "inline-block h-5 w-[2px] animate-blink bg-primary",
+          "h-5 w-[2px] animate-blink bg-primary",
           cursorClassName
         )}
       />

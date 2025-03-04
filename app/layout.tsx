@@ -13,10 +13,10 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    default: "李明 | AI产品经理",
-    template: "%s | 李明的个人网站",
+    default: "文森特 | AI产品",
+    template: "%s | 文森特的个人网站",
   },
-  description: "AI产品经理、算法研究者、全栈开发者李明的个人网站",
+  description: "AI产品经理、算法研究者、全栈开发者文森特的个人网站",
   keywords: ["AI", "产品经理", "算法研究", "Next.js", "全栈开发"],
 };
 

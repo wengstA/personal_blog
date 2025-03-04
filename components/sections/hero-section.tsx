@@ -8,13 +8,13 @@ import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 export function HeroSection() {
   const words = [
-    { text: "兼具" },
-    { text: "人机交互" },
-    { text: "学术背景" },
+    { text: "融合" },
+    { text: "技术洞察" },
     { text: "与" },
-    { text: "AI工程思维", className: "text-blue-500 dark:text-blue-400" },
-    { text: "的" },
-    { text: "复合型人才", className: "text-indigo-500 dark:text-indigo-400" },
+    { text: "产品思维", className: "text-[#33CC33]" },
+    { text: "的"},
+    { text: "AI一线冲浪者🏄", className: "text-[#33CC33]" },
+    { text: "创新实践 + 超强执行力 = AI时代新产品", className: "text-[#33CC33]"},
   ];
 
   // Define bubble props structure for type safety
@@ -85,15 +85,15 @@ export function HeroSection() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-white">
-              翁诗彤
+              Hello啊!🤓 我是文森特
             </h1>
             <p className="mt-2 text-xl md:text-2xl text-gray-400">
-              AI产品经理 | 算法研究者 | 全栈开发者
+              AI产品 | 算法研究者 | 全栈开发者 | 风味探险家☕️
             </p>
           </motion.div>
           
           <div className="h-20">
-            <TypewriterEffect words={words} className="text-lg md:text-2xl" />
+            <TypewriterEffect words={words} className="text-lg md:text-2xl" noLoop={true} />
           </div>
           
           <motion.div 
