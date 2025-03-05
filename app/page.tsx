@@ -19,14 +19,26 @@ export default function HomePage() {
       {/* 英雄区块 - 全屏视差效果 */}
       <HeroSection />
       
+      {/* 页面间隔 */}
+      <div className="section-spacer" />
+      
       {/* AI专长领域预览 */}
       <AIExpertise />
+      
+      {/* 页面间隔 */}
+      <div className="section-spacer" />
       
       {/* 技能展示 - 动态交互卡片 */}
       <SkillsShowcase />
       
+      {/* 页面间隔 */}
+      <div className="section-spacer" />
+      
       {/* 精选项目 - 图片滑动展示 */}
       <FeaturedProjects />
+      
+      {/* 页面间隔 */}
+      <div className="section-spacer" />
       
       {/* 最近经历 - 时间线展示 */}
       <RecentExperience />
