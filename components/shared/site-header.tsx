@@ -15,13 +15,7 @@ export function SiteHeader() {
   // After mounting, we can safely show the theme toggle
   useEffect(() => {
     setMounted(true);
-    
-    // 确保localStorage中的主题设置与当前状态匹配
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, [setTheme]);
+  }, []);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -34,10 +28,7 @@ export function SiteHeader() {
   }, []);
   
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    // 手动将主题存储到localStorage，增强兼容性
-    localStorage.setItem('theme', newTheme);
+    setTheme(theme === "dark" ? "light" : "dark");
   };
   
   return (
