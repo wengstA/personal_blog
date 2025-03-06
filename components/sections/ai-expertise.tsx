@@ -10,7 +10,7 @@ export function AIExpertise() {
   const [activeTab, setActiveTab] = useState("algorithm");
   
   return (
-    <section id="ai-expertise" className="w-full py-28 bg-white relative overflow-hidden">
+    <section id="ai-expertise" className="w-full py-28 bg-background relative overflow-hidden">
       {/* 上方分隔线 */}
       <div className="absolute top-0 left-0 right-0 section-divider"></div>      
       
@@ -65,7 +65,7 @@ export function AIExpertise() {
             </span>
           </motion.div>
           <motion.h2 
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900"
+            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -73,7 +73,7 @@ export function AIExpertise() {
             我的AI专长领域
           </motion.h2>
           <motion.p 
-            className="max-w-[700px] text-gray-600 md:text-xl"
+            className="max-w-[700px] text-muted-foreground md:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -87,11 +87,11 @@ export function AIExpertise() {
           className="w-full max-w-4xl mx-auto"
           onValueChange={setActiveTab}
         >
-          <TabsList className="grid grid-cols-4 w-full bg-gray-100 p-1 rounded-xl">
-            <TabsTrigger value="algorithm" className="data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--primary))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">算法研究</TabsTrigger>
-            <TabsTrigger value="product" className="data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--secondary))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">产品设计</TabsTrigger>
-            <TabsTrigger value="startup" className="data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--impressionist-green))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">创业项目</TabsTrigger>
-            <TabsTrigger value="tech" className="data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--accent))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">技术应用</TabsTrigger>
+          <TabsList className="grid grid-cols-4 w-full bg-muted/50 p-1 rounded-xl">
+            <TabsTrigger value="algorithm" className="data-[state=active]:bg-card data-[state=active]:text-[hsl(var(--primary))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">算法研究</TabsTrigger>
+            <TabsTrigger value="product" className="data-[state=active]:bg-card data-[state=active]:text-[hsl(var(--secondary))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">产品设计</TabsTrigger>
+            <TabsTrigger value="startup" className="data-[state=active]:bg-card data-[state=active]:text-[hsl(var(--impressionist-green))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">创业项目</TabsTrigger>
+            <TabsTrigger value="tech" className="data-[state=active]:bg-card data-[state=active]:text-[hsl(var(--accent))] data-[state=active]:shadow-md rounded-lg transition-all duration-200">技术应用</TabsTrigger>
           </TabsList>
           
           <TabsContent value="algorithm" className="mt-6">
@@ -100,27 +100,27 @@ export function AIExpertise() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="bg-white border border-gray-100 backdrop-blur-sm shadow-md">
+              <Card className="bg-card border-border backdrop-blur-sm shadow-md">
                 <CardHeader>
-                  <CardTitle className="text-gray-800 relative inline-block">
+                  <CardTitle className="text-card-foreground relative inline-block">
                     <span className="relative z-10">声音事件检测算法研究</span>
                     <span className="absolute bottom-0 left-0 w-full h-3 bg-[hsl(var(--impressionist-yellow))]/20 -z-10 transform -rotate-1"></span>
                   </CardTitle>
-                  <CardDescription className="text-gray-600">三个核心算法研究项目</CardDescription>
+                  <CardDescription className="text-muted-foreground">三个核心算法研究项目</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-3">
-                      <h3 className="text-lg font-medium text-gray-800 relative inline-block">
+                      <h3 className="text-lg font-medium text-card-foreground relative inline-block">
                         <span className="relative z-10">Waveform-Logmel Dual Stream Fusion Network</span>
                         <span className="absolute bottom-0 left-0 w-full h-2 bg-[hsl(var(--primary))]/20 -z-10"></span>
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         双流融合网络用于高效声音事件检测，结合波形和对数梅尔特征的优势...
                       </p>
                     </div>
-                    <div className="rounded-lg overflow-hidden bg-gray-50 h-48 relative border border-gray-100 shadow-sm">
-                      <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+                    <div className="rounded-lg overflow-hidden bg-muted h-48 relative border border-border shadow-sm">
+                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
                         <div className="w-20 h-20 bg-[hsl(var(--impressionist-blue))]/20 rounded-full absolute top-5 left-5"></div>
                         <div className="w-16 h-16 bg-[hsl(var(--impressionist-pink))]/20 rounded-full absolute bottom-8 right-8"></div>
                         <span className="z-10 font-medium">[模型架构图]</span>

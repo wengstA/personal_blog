@@ -108,7 +108,7 @@ export function SkillsShowcase() {
   ];
 
   return (
-    <section id="skills" className="relative py-28 bg-white overflow-hidden">
+    <section id="skills" className="relative py-28 bg-background overflow-hidden">
       {/* 浮动的点元素 - 符合Headspace风格 */}
       <div className="absolute inset-0">
         {floatingPoints.map((point, i) => (
@@ -195,7 +195,7 @@ export function SkillsShowcase() {
             </span>
           </motion.div>
           <motion.h2 
-            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900"
+            className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -203,7 +203,7 @@ export function SkillsShowcase() {
             我的技术能力
           </motion.h2>
           <motion.p 
-            className="max-w-[700px] text-gray-600 md:text-xl"
+            className="max-w-[700px] text-muted-foreground md:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -212,30 +212,30 @@ export function SkillsShowcase() {
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {skills.map((skillGroup, groupIndex) => (
             <motion.div 
               key={skillGroup.category}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 + groupIndex * 0.1 }}
-              className="space-y-6 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+              className="space-y-6 bg-card rounded-2xl p-6 border border-border shadow-sm w-full min-w-[280px] h-full flex flex-col"
             >
               <div className="flex items-center gap-3 mb-4">
-                <h3 className="text-xl font-semibold text-gray-900">{skillGroup.category}</h3>
-                <Separator className="flex-1 bg-gray-200" />
+                <h3 className="text-xl font-semibold text-foreground">{skillGroup.category}</h3>
+                <Separator className="flex-1 bg-border" />
               </div>
               
-              <div className="space-y-5">
+              <div className="space-y-5 flex-grow">
                 {skillGroup.items.map((skill, index) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-sm font-medium text-gray-700">{skill.name}</span>
+                      <span className="text-sm font-medium text-muted-foreground">{skill.name}</span>
                       <Badge className="text-xs bg-[hsla(var(--impressionist-blue)/0.15)] text-[hsl(var(--primary))] border-none">{skill.level}%</Badge>
                     </div>
                     <Progress 
                       value={skill.level} 
-                      className="h-2 bg-gray-100" 
+                      className="h-2 bg-muted" 
                       indicatorClassName={index % 4 === 0 ? "bg-[hsl(var(--impressionist-pink))]" :
                                        index % 4 === 1 ? "bg-[hsl(var(--impressionist-blue))]" :
                                        index % 4 === 2 ? "bg-[hsl(var(--impressionist-green))]" :

@@ -6,6 +6,41 @@ import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
+// 客户端组件处理随机数生成
+function ClientDigitalRain() {
+  const [digitalRainElements, setDigitalRainElements] = useState<{top: string; left: string; opacity: number; text: string}[]>([]);
+  
+  useEffect(() => {
+    // 只在客户端生成随机数据
+    const elements = Array(10).fill(0).map(() => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      opacity: Math.random() * 0.5 + 0.2,
+      text: Math.random().toString(36).substring(2, 7)
+    }));
+    
+    setDigitalRainElements(elements);
+  }, []);
+  
+  return (
+    <div className="absolute inset-0 overflow-hidden opacity-[0.10]">
+      {digitalRainElements.map((element, i) => (
+        <div 
+          key={i} 
+          className="absolute text-xs font-mono text-cyan-400"
+          style={{ 
+            top: element.top, 
+            left: element.left, 
+            opacity: element.opacity 
+          }}
+        >
+          {element.text}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function HeroSection() {
   const words = [
     { text: "融合" },
@@ -125,140 +160,46 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden">
-      {/* 背景动画元素 - 白色背景下的细微纹理 */}
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden">
+      {/* 背景动画元素 - 细微纹理 */}
       <div className="absolute inset-0 w-full h-full bg-grid-small-white/[0.08] -z-10" />
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,white)]"></div>
       
-      {/* Headspace风格的几何形状背景元素 */}
-      <div className="absolute inset-0 overflow-hidden">
-        {shapes.map((shape, i) => {
-          // 根据形状类型返回不同的组件
-          if (shape.type === 'circle') {
-            return (
-              <motion.div
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  width: shape.width,
-                  height: shape.height,
-                  left: shape.left,
-                  top: shape.top,
-                  background: shape.color,
-                  zIndex: shape.zIndex,
-                }}
-                initial={{ opacity: 0.8, rotate: shape.rotation }}
-                animate={{
-                  opacity: [0.8, 1, 0.8],
-                  rotate: [shape.rotation, shape.rotation + 2, shape.rotation],
-                  scale: [1, 1.02, 1],
-                }}
-                transition={{
-                  duration: shape.duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }}
-              />
-            );
-          } else if (shape.type === 'rectangle') {
-            return (
-              <motion.div
-                key={i}
-                className="absolute rounded-lg"
-                style={{
-                  width: shape.width,
-                  height: shape.height,
-                  left: shape.left,
-                  top: shape.top,
-                  background: shape.color,
-                  zIndex: shape.zIndex,
-                }}
-                initial={{ opacity: 0.8, rotate: shape.rotation }}
-                animate={{
-                  opacity: [0.8, 1, 0.8],
-                  rotate: [shape.rotation, shape.rotation - 2, shape.rotation],
-                  scale: [1, 1.03, 1],
-                }}
-                transition={{
-                  duration: shape.duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }}
-              />
-            );
-          } else if (shape.type === 'triangle') {
-            return (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{
-                  width: 0,
-                  height: 0,
-                  left: shape.left,
-                  top: shape.top,
-                  borderLeft: `${shape.width / 2}px solid transparent`,
-                  borderRight: `${shape.width / 2}px solid transparent`,
-                  borderBottom: `${shape.height}px solid ${shape.color}`,
-                  zIndex: shape.zIndex,
-                }}
-                initial={{ opacity: 0.8, rotate: shape.rotation }}
-                animate={{
-                  opacity: [0.8, 1, 0.8],
-                  rotate: [shape.rotation, shape.rotation + 3, shape.rotation],
-                }}
-                transition={{
-                  duration: shape.duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }}
-              />
-            );
-          } else if (shape.type === 'blob') {
-            // 使用SVG创建不规则的blob形状
-            return (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{
-                  width: shape.width,
-                  height: shape.height,
-                  left: shape.left,
-                  top: shape.top,
-                  zIndex: shape.zIndex,
-                }}
-                initial={{ opacity: 0.8, rotate: shape.rotation }}
-                animate={{
-                  opacity: [0.8, 1, 0.8],
-                  rotate: [shape.rotation, shape.rotation - 2, shape.rotation],
-                  scale: [1, 1.04, 1],
-                }}
-                transition={{
-                  duration: shape.duration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }}
-              >
-                <svg width="100%" height="100%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                  <path 
-                    fill={shape.color}
-                    d="M42.8,-62.2C54.9,-54.3,63.8,-40.9,69.5,-26.2C75.2,-11.5,77.7,4.5,74.3,19.6C70.9,34.7,61.6,48.9,48.7,57.4C35.9,65.9,19.5,68.7,3.2,64.8C-13,60.9,-26.1,50.3,-37.5,39.3C-48.9,28.2,-58.8,16.8,-62.9,3.4C-67,-10,-65.4,-25,-58.3,-36.2C-51.2,-47.4,-38.6,-54.8,-25.8,-62C-13,-69.2,0,-76.1,13.7,-75.1C27.3,-74.1,54.7,-65.2,54.7,-65.2"
-                    transform="translate(100 100)"
-                  />
-                </svg>
-              </motion.div>
-            );
-          }
-          return null;
-        })}
+      {/* 高科技风格背景元素 - 蓝光效果（仅在黑暗模式下显示） */}
+      <div className="dark:block hidden">
+        <div className="absolute w-[800px] h-[800px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[hsl(220,100%,50%)] rounded-full blur-[250px] opacity-[0.15] animate-pulse"></div>
+        <div className="absolute w-[400px] h-[400px] left-[65%] top-[30%] bg-[hsl(190,100%,50%)] rounded-full blur-[150px] opacity-[0.10] animate-pulse"></div>
+        <div className="absolute w-[300px] h-[300px] left-[20%] bottom-[20%] bg-[hsl(210,100%,60%)] rounded-full blur-[120px] opacity-[0.10] animate-pulse"></div>
+        
+        {/* 数字雨风格的元素 */}
+        <ClientDigitalRain />
+        
+        {/* 扫描线效果 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent bg-repeat-y h-10 animate-scan"></div>
       </div>
       
-      {/* 素雅的暖色调背景光晕 - Headspace风格 */}
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[hsl(var(--impressionist-pink))] rounded-full blur-[120px] opacity-[0.07] -z-5" />
-      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[hsl(var(--impressionist-blue))] rounded-full blur-[100px] opacity-[0.07] -z-5" />
+      {/* 山脉背景和毛玻璃效果 - 仅在亮色模式下显示 */}
+      <div className="dark:hidden absolute inset-0 overflow-hidden">
+        {/* 山脉形状背景 */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
+          <svg className="w-full h-full" viewBox="0 0 1440 380" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,142L60,152.7C120,163,240,185,360,179.3C480,174,600,142,720,147.3C840,153,960,195,1080,211.3C1200,227,1320,217,1380,211.3L1440,206L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(79, 161, 97, 0.25)"/>
+            <path d="M0,174L48,168.7C96,163,192,153,288,163.3C384,174,480,206,576,200.7C672,195,768,153,864,120.7C960,89,1056,67,1152,78C1248,89,1344,131,1392,152.7L1440,174L1440,380L1392,380C1344,380,1248,380,1152,380C1056,380,960,380,864,380C768,380,672,380,576,380C480,380,384,380,288,380C192,380,96,380,48,380L0,380Z" fill="rgba(54, 133, 77, 0.35)"/>
+            <path d="M0,206L60,200.7C120,195,240,185,360,168.7C480,153,600,131,720,131.3C840,131,960,153,1080,163.3C1200,174,1320,174,1380,174L1440,174L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(105, 180, 132, 0.4)"/>
+          </svg>
+        </div>
+        
+        {/* 白色毛玻璃效果 - 覆盖在山脉上 */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 backdrop-blur-md bg-white/30"></div>
+      </div>
+      
+      {/* 暖色调背景光晕 - 仅在亮色模式下显示 */}
+      <div className="dark:hidden absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[hsl(var(--impressionist-pink))] rounded-full blur-[120px] opacity-[0.07] -z-5" />
+      <div className="dark:hidden absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[hsl(var(--impressionist-blue))] rounded-full blur-[100px] opacity-[0.07] -z-5" />
+      
+      {/* 左上角阳光效果 - 仅在亮色模式下显示 */}
+      <div className="dark:hidden absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-yellow-200/50 via-yellow-300/20 to-transparent -translate-x-1/4 -translate-y-1/4 opacity-70 -z-5"></div>
+      <div className="dark:hidden absolute top-0 left-0 w-[250px] h-[250px] bg-gradient-radial from-amber-100/70 via-amber-100/30 to-transparent opacity-80 -z-5"></div>
       
       {/* 主内容 */}
       <div className="container px-4 md:px-6 z-10">
@@ -268,10 +209,10 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-gray-800 drop-shadow-sm">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-foreground drop-shadow-sm">
               Hello啊!🤓 我是文森特
             </h1>
-            <p className="mt-2 text-xl md:text-2xl text-gray-600">
+            <p className="mt-2 text-xl md:text-2xl text-muted-foreground">
               AI产品 | 算法研究者 | 全栈开发者 | 风味探险家☕️
             </p>
           </motion.div>
@@ -301,10 +242,10 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button variant="ghost" size="icon" className="rounded-full text-gray-700 hover:bg-[hsl(var(--impressionist-pink))/0.2] hover:text-[hsl(var(--primary))]">
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:bg-[hsl(var(--impressionist-pink))/0.2] hover:text-[hsl(var(--primary))]">
               <GitHubLogoIcon className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full text-gray-700 hover:bg-[hsl(var(--impressionist-blue))/0.2] hover:text-[hsl(var(--impressionist-blue))]">
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:bg-[hsl(var(--impressionist-blue))/0.2] hover:text-[hsl(var(--impressionist-blue))]">
               <LinkedInLogoIcon className="h-5 w-5" />
             </Button>
           </motion.div>
