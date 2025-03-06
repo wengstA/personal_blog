@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   },
   description: "AI产品经理、算法研究者、全栈开发者文森特的个人网站",
   keywords: ["AI", "产品经理", "算法研究", "Next.js", "全栈开发"],
+  icons: {
+    icon: [
+      {
+        url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🙈</text></svg>",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -33,12 +41,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">{children}</div>
@@ -48,4 +51,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}
