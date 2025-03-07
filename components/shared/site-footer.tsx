@@ -98,9 +98,9 @@ export function SiteFooter() {
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">联系方式</h3>
             <ul className="space-y-2 text-gray-500">
-              <li>邮箱: example@example.com</li>
-              <li>GitHub: github.com/yourusername</li>
-              <li>LinkedIn: linkedin.com/in/yourusername</li>
+              <li>邮箱:st_weng_302@foxmail.com</li>
+              <li>GitHub: github.com/wengstA</li>
+              <li>LinkedIn: 晚点更新:)</li>
             </ul>
           </div>
         </div>

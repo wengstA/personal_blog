@@ -108,7 +108,7 @@ export function SkillsShowcase() {
   ];
 
   return (
-    <section id="skills" className="relative py-28 bg-background overflow-hidden">
+    <section id="skills" className="relative py-28 bg-transparent overflow-hidden">
       {/* 浮动的点元素 - 符合Headspace风格 */}
       <div className="absolute inset-0">
         {floatingPoints.map((point, i) => (

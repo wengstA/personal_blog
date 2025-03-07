@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
+import { FixHydration } from "@/components/fix-hydration";
+import { DawnBackground } from "@/components/dawn-background";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -42,6 +44,8 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
+          <FixHydration />
+          <DawnBackground />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">{children}</div>

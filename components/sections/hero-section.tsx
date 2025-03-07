@@ -49,7 +49,7 @@ export function HeroSection() {
     { text: "产品思维", className: "text-[hsl(var(--primary))]" },
     { text: "的"},
     { text: "AI一线冲浪者🏄", className: "text-[hsl(var(--impressionist-blue))]" },
-    { text: "创新实践 + 超强执行力 = AI时代新产品", className: "text-[hsl(var(--accent))]"},
+    { text: "创新实践 + 超强执行力 = AI时代新个体", className: "text-[hsl(var(--accent))]"},
   ];
 
   // Define shape props structure for type safety
@@ -178,28 +178,20 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent bg-repeat-y h-10 animate-scan"></div>
       </div>
       
-      {/* 山脉背景和毛玻璃效果 - 仅在亮色模式下显示 */}
-      <div className="dark:hidden absolute inset-0 overflow-hidden">
+      {/* 山脉背景和过渡效果 - 固定在Hero部分底部 */}
+      <div className="dark:hidden absolute bottom-0 left-0 right-0 overflow-hidden" style={{ height: "40vh" }}>
         {/* 山脉形状背景 */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 overflow-hidden">
-          <svg className="w-full h-full" viewBox="0 0 1440 380" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,142L60,152.7C120,163,240,185,360,179.3C480,174,600,142,720,147.3C840,153,960,195,1080,211.3C1200,227,1320,217,1380,211.3L1440,206L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(79, 161, 97, 0.25)"/>
-            <path d="M0,174L48,168.7C96,163,192,153,288,163.3C384,174,480,206,576,200.7C672,195,768,153,864,120.7C960,89,1056,67,1152,78C1248,89,1344,131,1392,152.7L1440,174L1440,380L1392,380C1344,380,1248,380,1152,380C1056,380,960,380,864,380C768,380,672,380,576,380C480,380,384,380,288,380C192,380,96,380,48,380L0,380Z" fill="rgba(54, 133, 77, 0.35)"/>
-            <path d="M0,206L60,200.7C120,195,240,185,360,168.7C480,153,600,131,720,131.3C840,131,960,153,1080,163.3C1200,174,1320,174,1380,174L1440,174L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(105, 180, 132, 0.4)"/>
-          </svg>
-        </div>
-        
-        {/* 白色毛玻璃效果 - 覆盖在山脉上 */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 backdrop-blur-md bg-white/30"></div>
+        <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1440 380" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,142L60,152.7C120,163,240,185,360,179.3C480,174,600,142,720,147.3C840,153,960,195,1080,211.3C1200,227,1320,217,1380,211.3L1440,206L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(79, 161, 97, 0.25)"/>
+          <path d="M0,174L48,168.7C96,163,192,153,288,163.3C384,174,480,206,576,200.7C672,195,768,153,864,120.7C960,89,1056,67,1152,78C1248,89,1344,131,1392,152.7L1440,174L1440,380L1392,380C1344,380,1248,380,1152,380C1056,380,960,380,864,380C768,380,672,380,576,380C480,380,384,380,288,380C192,380,96,380,48,380L0,380Z" fill="rgba(54, 133, 77, 0.35)"/>
+          <path d="M0,206L60,200.7C120,195,240,185,360,168.7C480,153,600,131,720,131.3C840,131,960,153,1080,163.3C1200,174,1320,174,1380,174L1440,174L1440,380L1380,380C1320,380,1200,380,1080,380C960,380,840,380,720,380C600,380,480,380,360,380C240,380,120,380,60,380L0,380Z" fill="rgba(105, 180, 132, 0.4)"/>
+        </svg>
+          
+        {/* 改进的过渡效果 - 移除白色背景 */}
+        <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-b from-transparent via-background/30 to-transparent backdrop-blur-[1px]"></div>
       </div>
       
-      {/* 暖色调背景光晕 - 仅在亮色模式下显示 */}
-      <div className="dark:hidden absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[hsl(var(--impressionist-pink))] rounded-full blur-[120px] opacity-[0.07] -z-5" />
-      <div className="dark:hidden absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[hsl(var(--impressionist-blue))] rounded-full blur-[100px] opacity-[0.07] -z-5" />
       
-      {/* 左上角阳光效果 - 仅在亮色模式下显示 */}
-      <div className="dark:hidden absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-radial from-yellow-200/50 via-yellow-300/20 to-transparent -translate-x-1/4 -translate-y-1/4 opacity-70 -z-5"></div>
-      <div className="dark:hidden absolute top-0 left-0 w-[250px] h-[250px] bg-gradient-radial from-amber-100/70 via-amber-100/30 to-transparent opacity-80 -z-5"></div>
       
       {/* 主内容 */}
       <div className="container px-4 md:px-6 z-10">
