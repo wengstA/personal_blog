@@ -117,8 +117,15 @@ export function AIExpertise() {
                       <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg">
                         <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-purple))] to-[hsl(var(--impressionist-blue))]"></div>
                         <div className="relative h-40 w-full overflow-hidden rounded-lg">
-                          <div className="flex h-full w-full items-center justify-center bg-muted/50 text-sm text-muted-foreground">
-                            [添加第二张图片]  
+                          <div className="relative h-full w-full">
+                            <img 
+                              src="/images/projects/TS_network.png"
+                              alt="优化蒸馏机制" 
+                              className="object-cover w-full h-full"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                              <p className="text-xs font-medium text-white">优化蒸馏机制</p>
+                            </div>
                           </div>
                         </div>
                         <div className="relative mt-2 px-1">
