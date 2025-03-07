@@ -40,28 +40,35 @@
     --headspace-yellow: 48 100% 67%;
     --headspace-red: 356 86% 65%;
     --headspace-purple: 276 82% 66%;
+    
+    /* 高科技主题颜色 */
+    --tech-blue: 210 100% 50%;
+    --tech-cyan: 190 100% 50%;
+    --tech-purple: 270 100% 60%;
+    --tech-dark-blue: 220 70% 15%;
+    --tech-darker-blue: 225 70% 8%;
   }
  
   .dark {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 342 89% 58%;
+    --background: 225 70% 8%;
+    --foreground: 210 40% 98%;
+    --card: 220 70% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 70% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 262 83% 58%;
+    --secondary: 190 100% 50%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 38 92% 50%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 270 100% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 342 89% 58%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 210 100% 50%;
   }
 }
  
@@ -80,14 +87,42 @@
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='8' height='8' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
 }
 
+/* 高科技暗色主题网格 */
+.dark .bg-grid-white {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(0 150 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.dark .bg-grid-small-white {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='8' height='8' fill='none' stroke='rgb(0 150 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+/* 扫描线动画效果 - 高科技风格 */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-scan {
+  animation: scan 8s linear infinite;
+}
+
+/* 亮色模式下的扫描线动画 */
+.animate-scan-light {
+  animation: scan 12s linear infinite;
+}
+
 /* 添加页面分隔样式 - Headspace风格 */
 .section-divider {
-  @apply relative h-1 w-full overflow-hidden bg-gradient-to-r from-transparent via-gray-200 to-transparent;
+  @apply relative h-1 w-full overflow-hidden bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-gray-700;
 }
 
 .section-divider::before {
   content: '';
-  @apply absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent;
+  @apply absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-600;
 }
 
 /* 页面间隔 */
@@ -105,4 +140,10 @@
   background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 16px 16px;
   @apply opacity-10;
+}
+
+.dark .dot-pattern {
+  background-image: radial-gradient(circle, rgba(0, 150, 255, 0.2) 1px, transparent 1px);
+  background-size: 16px 16px;
+  @apply opacity-20;
 }
