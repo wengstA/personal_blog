@@ -7,7 +7,8 @@ import Link from 'next/link';
 
 export default function FeishuPage() {
   const searchParams = useSearchParams();
-  const url = searchParams.get('url');
+  // Using undefined as default so the conditional rendering works as intended
+  const url = searchParams?.get('url') || undefined;
   const [title, setTitle] = useState('学习笔记');
   
   // Handle back navigation gracefully
