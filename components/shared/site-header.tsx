@@ -68,7 +68,7 @@ export function SiteHeader() {
             <NavLink href="#projects">项目</NavLink>
             <NavLink href="#experience">经历</NavLink>
             <NavLink href="#experience">浪潮沉思录</NavLink>
-            <NavLink href="#experience">学习笔记</NavLink>
+            <NavLink href="/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/PMo2wLeeZigWCykoDjdcqG00nLh">学习笔记</NavLink>
           </nav>
           
           <Button 
@@ -84,8 +84,19 @@ export function SiteHeader() {
 }
 
 // Navigation link component with blue underline animation
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
+function NavLink({ href, children, isExternal = false }: { href: string; children: React.ReactNode; isExternal?: boolean }) {
+  const linkProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  
+  return isExternal ? (
+    <a 
+      href={href}
+      {...linkProps}
+      className="text-sm font-medium text-[rgb(48,48,48)] dark:text-[rgb(220,220,220)] relative group py-2"
+    >
+      {children}
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[rgb(0,113,227)] dark:bg-[rgb(10,132,255)] transition-all duration-300 group-hover:w-full"></span>
+    </a>
+  ) : (
     <Link 
       href={href} 
       className="text-sm font-medium text-[rgb(48,48,48)] dark:text-[rgb(220,220,220)] relative group py-2"
