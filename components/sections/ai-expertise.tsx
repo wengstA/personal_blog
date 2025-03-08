@@ -253,7 +253,7 @@ export function AIExpertise() {
                 <CardHeader>
                   <CardTitle className="text-card-foreground relative inline-block">
                     <span className="relative z-10">声音AI相关专利展示</span>
-                    <span className="absolute bottom-0 left-0 w-full h-3 bg-[hsl(var(--impressionist-blue))]/20 -z-10 transform -rotate-1"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-3 bg-[hsl(var(--impressionist-blue))]/20 -z-10"></span>
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
                     技术专利与创新成果展示

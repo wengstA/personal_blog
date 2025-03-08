@@ -1,4 +1,6 @@
-export default function NotFoundPage() {
+import React from 'react';
+
+export default function Custom404() {
   return (
     <div className="flex items-center justify-center min-h-[70vh] flex-col px-4">
       <h1 className="text-4xl font-bold mb-4 text-foreground">404 - 页面未找到</h1>
