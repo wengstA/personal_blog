@@ -1,0 +1,162 @@
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+
+// MDX components
+import { MDXComponents } from '@/components/mdx-components';
+
+interface BlogPostParams {
+  category: string;
+  slug: string;
+}
+
+interface BlogPostProps {
+  params: BlogPostParams;
+  searchParams?: Record<string, string | string[]>;
+}
+
+// 获取格式化的日期
+function getFormattedDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// 获取分类显示名称
+function getCategoryDisplayName(category: string): string {
+  const categoryMap: Record<string, string> = {
+    'interaction_with_world': '世界-交互',
+    'ai': 'AI探索',
+    'personal_growth': '个人成长',
+  };
+  
+  return categoryMap[category] || category;
+}
+
+// 生成元数据
+export async function generateMetadata(
+  { params }: BlogPostProps
+): Promise<Metadata> {
+  try {
+    const filePath = path.join(process.cwd(), 'content/blog', params.category, `${params.slug}.md`);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const { data: frontmatter } = matter(fileContent);
+    
+    return {
+      title: `${frontmatter.title} | 浪潮沉思录`,
+      description: frontmatter.excerpt || '',
+      openGraph: {
+        title: frontmatter.title,
+        description: frontmatter.excerpt || '',
+        type: 'article',
+        images: frontmatter.heroImage ? [{ url: frontmatter.heroImage, alt: frontmatter.title }] : [],
+      },
+    };
+  } catch (error) {
+    return {
+      title: '博客文章 | 浪潮沉思录',
+    };
+  }
+}
+
+// 博客文章页面组件
+export default async function BlogPostPage({ params }: BlogPostProps) {
+  const { category, slug } = params;
+  
+  try {
+    // Read the file content
+    const filePath = path.join(process.cwd(), 'content/blog', category, `${slug}.md`);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    
+    // Parse the frontmatter and content
+    const { data: frontmatter, content } = matter(fileContent);
+    
+    return (
+      <main className="flex min-h-screen flex-col items-center pt-24 px-4 sm:px-6 md:px-8">
+        <article className="w-full max-w-4xl mx-auto prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-[rgb(0,113,227)] dark:prose-a:text-[rgb(10,132,255)] prose-img:rounded-xl">
+          {/* Back button */}
+          <Link 
+            href="/blog" 
+            className="inline-flex items-center text-[rgb(0,113,227)] dark:text-[rgb(10,132,255)] hover:text-blue-700 dark:hover:text-blue-400 font-medium no-underline mb-8 group"
+          >
+            <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+            返回博客列表
+          </Link>
+          
+          {/* Hero image */}
+          {frontmatter.heroImage && (
+            <div className="relative w-full h-80 md:h-96 mb-8 rounded-xl overflow-hidden">
+              <Image
+                src={frontmatter.heroImage}
+                alt={frontmatter.title}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+              />
+            </div>
+          )}
+          
+          {/* Category and metadata */}
+          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-600 dark:text-gray-300">
+            <Link 
+              href={`/blog?category=${category}`}
+              className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300 font-medium no-underline"
+            >
+              {getCategoryDisplayName(category)}
+            </Link>
+            
+            <div className="flex items-center">
+              <Calendar size={16} className="mr-1.5" />
+              {getFormattedDate(frontmatter.date)}
+            </div>
+            
+            <div className="flex items-center">
+              <Clock size={16} className="mr-1.5" />
+              {frontmatter.readingTime}
+            </div>
+          </div>
+          
+          {/* Title */}
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            {frontmatter.title}
+          </h1>
+          
+          {/* Excerpt as subtitle */}
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
+            {frontmatter.excerpt}
+          </p>
+          
+          {/* Content */}
+          <div className="markdown-content">
+            <MDXRemote 
+              source={content} 
+              components={MDXComponents}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [
+                    rehypeHighlight as any,
+                    rehypeSlug,
+                  ],
+                }
+              }}
+            />
+          </div>
+        </article>
+      </main>
+    );
+  } catch (error) {
+    console.error('Error loading blog post:', error);
+    notFound();
+  }
+}

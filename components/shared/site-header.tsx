@@ -15,21 +15,8 @@ export function SiteHeader() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   
-  // Check if we're on the feishu page and determine the title based on URL
+  // Check if we're on the feishu page
   const isFeishuPage = pathname === "/feishu";
-  const feishuUrl = searchParams.get('url');
-  
-  // Set appropriate page title based on the Feishu document URL
-  let pageTitle = "";
-  if (isFeishuPage) {
-    if (feishuUrl?.includes('Ahk2wKrREi4BVykCrg4cWlqGn7f')) {
-      pageTitle = "关于我"; // 关于我
-    } else if (feishuUrl?.includes('PMo2wLeeZigWCykoDjdcqG00nLh')) {
-      pageTitle = "学习笔记"; // 学习笔记
-    } else {
-      pageTitle = "飞书文档"; // Default: 飞书文档
-    }
-  }
   
   // After mounting, we can safely show the theme toggle
   useEffect(() => {
@@ -94,10 +81,10 @@ export function SiteHeader() {
             </Button>
           </div>
           
-          {/* Center: Page title */}
-          <h1 className="text-lg font-semibold text-[rgb(48,48,48)] dark:text-white absolute left-1/2 transform -translate-x-1/2">
-            {pageTitle}
-          </h1>
+          {/* The page title is now handled by the FeishuPage component */}
+          <div className="invisible" aria-hidden="true">
+            {/* This empty div maintains layout consistency */}
+          </div>
           
           {/* Right side: Username */}
           <div className="flex items-center">
@@ -147,7 +134,7 @@ export function SiteHeader() {
             <NavLink href="#skills">技能</NavLink>
             <NavLink href="#projects">项目</NavLink>
             <NavLink href="#experience">经历</NavLink>
-            <NavLink href="#experience">浪潮沉思录</NavLink>
+            <NavLink href="/blog">浪潮沉思录</NavLink>
             <NavLink href="/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/PMo2wLeeZigWCykoDjdcqG00nLh">学习笔记</NavLink>
           </nav>
           
