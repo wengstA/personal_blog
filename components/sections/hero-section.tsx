@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
@@ -223,7 +223,32 @@ export function HeroSection() {
               查看我的项目 <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>
             
-            <Button variant="outline" size="lg" className="border-[hsl(var(--accent))] text-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))] hover:text-white">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-[rgb(0,113,227)] text-[rgb(0,113,227)] hover:bg-[rgb(0,113,227)] hover:text-white transition-colors"
+              onClick={() => {
+                // 滚动到联系方式部分
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  // 使用原生滚动方法
+                  window.scrollTo({
+                    top: contactSection.offsetTop,
+                    behavior: 'smooth'
+                  });
+                  
+                  console.log('点击联系我按钮 - 滚动到ID:', contactSection.id);
+                  
+                  // 触发魔法光标动画
+                  setTimeout(() => {
+                    console.log('激活魔法光标');
+                    window.dispatchEvent(new CustomEvent('activateMagicCursor'));
+                  }, 1000);
+                } else {
+                  console.error('找不到联系方式部分元素');
+                }
+              }}
+            >
               联系我
             </Button>
           </motion.div>
@@ -234,7 +259,13 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:bg-[hsl(var(--impressionist-pink))/0.2] hover:text-[hsl(var(--primary))]">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full text-muted-foreground hover:bg-[hsl(var(--impressionist-pink))/0.2] hover:text-[hsl(var(--primary))]"
+              onClick={() => window.open('https://github.com/wengstA', '_blank')}
+              aria-label="GitHub Profile"
+            >
               <GitHubLogoIcon className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:bg-[hsl(var(--impressionist-blue))/0.2] hover:text-[hsl(var(--impressionist-blue))]">

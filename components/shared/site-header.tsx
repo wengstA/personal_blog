@@ -11,16 +11,25 @@ import { usePathname } from "next/navigation";
 // 提取需要使用 useSearchParams 的部分到一个单独的组件
 function NavigationWithSearchParams() {
   "use client";
-  const { useSearchParams } = require('next/navigation');
+  const { useSearchParams, usePathname } = require('next/navigation');
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  
+  // 检查当前是否在首页
+  const isHomePage = pathname === "/";
+  
+  // 为锚点链接创建正确的URL
+  const getHomeAnchorUrl = (anchor: string) => {
+    return isHomePage ? anchor : `/${anchor}`;
+  };
   
   return (
     <nav className="hidden md:flex items-center space-x-8">
       <NavLink href={`/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/Ahk2wKrREi4BVykCrg4cWlqGn7f?from=from_copylink`}>关于我</NavLink>
-      <NavLink href="#ai-expertise">AI专长</NavLink>
-      <NavLink href="#skills">技能</NavLink>
-      <NavLink href="#projects">项目</NavLink>
-      <NavLink href="#experience">经历</NavLink>
+      <NavLink href={isHomePage ? "#ai-expertise" : "/#ai-expertise"}>AI专长</NavLink>
+      <NavLink href={isHomePage ? "#skills" : "/#skills"}>技能</NavLink>
+      <NavLink href={isHomePage ? "#projects" : "/#projects"}>项目</NavLink>
+      <NavLink href={isHomePage ? "#experience" : "/#experience"}>经历</NavLink>
       <NavLink href="/blog">浪潮沉思录</NavLink>
       <NavLink href={`/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/PMo2wLeeZigWCykoDjdcqG00nLh`}>学习笔记</NavLink>
     </nav>
@@ -150,12 +159,12 @@ export function SiteHeader() {
             <NavigationWithSearchParams />
           </Suspense>
           
-          <Button 
+          {/* <Button 
             variant="ghost" 
             className="ml-6 text-[rgb(0,113,227)] hover:bg-[rgba(0,113,227,0.1)] dark:text-[rgb(10,132,255)] dark:hover:bg-[rgba(10,132,255,0.1)] transition-colors font-medium rounded-full px-4"
           >
             联系我
-          </Button>
+          </Button> */}
         </div>
       </div>
     </header>

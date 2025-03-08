@@ -70,25 +70,25 @@ export function SkillsShowcase() {
   
   const skills = [
     {
-      category: "产品设计",
+      category: "产品设计 🎨",
       items: [
-        { name: "用户研究", level: 95 },
-        { name: "产品规划", level: 90 },
-        { name: "交互设计", level: 85 },
-        { name: "竞品分析", level: 90 },
+        { name: "用户研究", level: 80 },
+        { name: "产品规划", level: 80 },
+        { name: "交互设计", level: 75 },
+        { name: "竞品分析", level: 80 },
       ]
     },
     {
-      category: "算法研究",
+      category: "算法研究 🧠",
       items: [
         { name: "机器学习", level: 85 },
-        { name: "深度学习", level: 80 },
-        { name: "NLP", level: 75 },
+        { name: "深度学习", level: 90 },
+        { name: "NLP", level: 85 },
         { name: "声音处理", level: 90 },
       ]
     },
     {
-      category: "计算机开发",
+      category: "计算机开发 💻",
       items: [
         { name: "前端开发", level: 85 },
         { name: "后端开发", level: 75 },
@@ -97,12 +97,30 @@ export function SkillsShowcase() {
       ]
     },
     {
-      category: "硬件系统",
+      category: "硬件系统 🔌",
       items: [
         { name: "Arduino", level: 80 },
         { name: "传感器应用", level: 75 },
         { name: "原型设计", level: 85 },
         { name: "硬件集成", level: 70 },
+      ]
+    },
+    {
+      category: "咖啡学 ☕️",
+      items: [
+        { name: "烘焙", level: 10 },
+        { name: "拉花", level: 20 },
+        { name: "品鉴", level: 40 },
+        { name: "萃取", level: 50 },
+      ]
+    },
+    {
+      category: "英语能力 🌐",
+      items: [
+        { name: "听力", level: 80 },
+        { name: "口语", level: 80 },
+        { name: "阅读", level: 90 },
+        { name: "写作", level: 80 },
       ]
     },
   ];
@@ -200,7 +218,7 @@ export function SkillsShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            我的技术能力
+            我的全栈能力
           </motion.h2>
           <motion.p 
             className="max-w-[700px] text-muted-foreground md:text-xl"
@@ -208,7 +226,7 @@ export function SkillsShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            跨越软件、硬件、算法与产品领域的全方位技术专长
+            热爱技术、食物与人文的六边形战士
           </motion.p>
         </div>
         
@@ -219,7 +237,7 @@ export function SkillsShowcase() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 + groupIndex * 0.1 }}
-              className="space-y-6 bg-card rounded-2xl p-6 border border-border shadow-sm w-full min-w-[280px] h-full flex flex-col"
+              className="space-y-6 bg-card dark:bg-[rgba(36,36,38,0.9)] rounded-2xl p-6 border border-border dark:border-gray-700 shadow-sm dark:shadow-md w-full min-w-[280px] h-full flex flex-col transition-all hover:shadow-lg dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
             >
               <div className="flex items-center gap-3 mb-4">
                 <h3 className="text-xl font-semibold text-foreground">{skillGroup.category}</h3>

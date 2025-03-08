@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
 import { FixHydration } from "@/components/fix-hydration";
 import { DawnBackground } from "@/components/dawn-background";
+import { MagicCursor } from "@/components/ui/magic-cursor";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
         <ThemeProvider>
           <FixHydration />
           <DawnBackground />
+          <MagicCursor />
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">{children}</div>

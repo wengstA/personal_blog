@@ -145,7 +145,7 @@ export default async function BlogPage() {
         {/* 遍历类别 */}
         {Object.keys(categorizedPosts).map(categorySlug => (
           <section key={categorySlug} id={categorySlug} className="mb-16 scroll-mt-32">
-            <div className="flex items-center mb-6 gap-3 sticky top-24 z-10 py-3 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center mb-6 gap-3 sticky top-20 z-20 py-3 px-5 bg-white/40 dark:bg-[rgb(28,28,30)]/40 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-xl shadow-lg before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/10 before:to-transparent before:rounded-xl before:-z-10 overflow-hidden transition-all duration-300">
               <span className="text-2xl md:text-3xl" aria-hidden="true">
                 {getCategoryIcon(categorySlug)}
               </span>

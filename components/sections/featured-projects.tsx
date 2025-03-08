@@ -28,14 +28,14 @@ export function FeaturedProjects() {
       link: "https://box.dreamy.icu/DASHBOARD"
     },
     {
-      title: "AI图像生成工作流",
+      title: "端到端人物IP形象生成工作流",
       description: (
         <ul className="list-disc pl-5 space-y-1 text-sm">
           <li>构建基于Flux+ComfyUI端到端自动化图像生成链路</li>
           <li>通过LoRA模型训练，解决风格迁移失真与任务形象一致性保持问题</li>
         </ul>
       ),
-      image: "/images/projects/ICME_network.png",
+      image: "/images/projects/comfyui.jpeg",
       link: "https://github.com/wengstA/ai-image-workflow"
     },
     {
@@ -53,7 +53,7 @@ export function FeaturedProjects() {
   ];
 
   return (
-    <section className="relative w-full py-12 md:py-24 lg:py-32 overflow-hidden bg-transparent">
+    <section id="projects" className="relative w-full py-12 md:py-24 lg:py-32 overflow-hidden bg-transparent">
       {/* Color blobs beneath the frosted glass */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Blue color blob - visible in both modes but with different opacities */}
@@ -78,7 +78,7 @@ export function FeaturedProjects() {
         </div>
         <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <TiltCard key={index}>
+            <TiltCard key={index} className="dark:bg-[rgba(36,36,38,0.9)] dark:border-gray-700 dark:shadow-lg transition-all hover:shadow-lg dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]">
               <div className="h-48 overflow-hidden">
                 <img 
                   src={project.image} 
