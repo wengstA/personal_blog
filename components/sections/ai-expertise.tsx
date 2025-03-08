@@ -260,62 +260,71 @@ export function AIExpertise() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {/* 类似奖项陈列墙的布局 */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {/* 更适合A4格式专利展示的布局 */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* 专利项 1 */}
-                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-60 flex flex-col">
+                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-[420px] flex flex-col">
                       <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-blue))] to-[hsl(var(--impressionist-green))]"></div>
                       <div className="p-3 bg-gradient-to-br from-blue-500/10 to-green-500/10 dark:from-blue-500/5 dark:to-green-500/5 rounded-t-lg">
-                        <h3 className="text-base font-medium text-card-foreground">声音事件检测专利</h3>
-                        <p className="text-xs text-muted-foreground mt-1">基于Transformer架构</p>
+                        <h3 className="text-lg font-medium text-card-foreground">声音事件检测专利</h3>
+                        <p className="text-sm text-muted-foreground mt-1">基于Transformer架构</p>
                       </div>
-                      <div className="flex-grow flex items-center justify-center overflow-hidden p-2">
-                        <img 
-                          src="/images/projects/Transformer_cow.png" 
-                          alt="声音事件检测专利" 
-                          className="max-h-32 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                        />
+                      <div className="flex-grow flex items-center justify-center overflow-hidden p-4">
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <img 
+                            src="/images/projects/Transformer_cow.png" 
+                            alt="声音事件检测专利" 
+                            className="max-h-[280px] w-auto object-contain transition-transform duration-300 group-hover:scale-102 shadow-sm"
+                          />
+                          <div className="absolute inset-0 pointer-events-none border border-border/20 rounded-md opacity-40"></div>
+                        </div>
                       </div>
-                      <div className="bg-gradient-to-br from-blue-500/5 to-green-500/5 dark:from-blue-500/10 dark:to-green-500/10 p-2 mt-auto rounded-b-lg">
-                        <p className="text-xs font-medium text-center text-foreground/80">中国专利号: ZL2023XXXXX</p>
+                      <div className="bg-gradient-to-br from-blue-500/5 to-green-500/5 dark:from-blue-500/10 dark:to-green-500/10 p-3 mt-auto rounded-b-lg">
+                        <p className="text-sm font-medium text-center text-foreground/80">中国专利号: ZL2023XXXXX</p>
                       </div>
                     </div>
 
                     {/* 专利项 2 */}
-                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-60 flex flex-col">
+                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-[420px] flex flex-col">
                       <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-yellow))] to-[hsl(var(--impressionist-orange))]"></div>
                       <div className="p-3 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 dark:from-yellow-500/5 dark:to-orange-500/5 rounded-t-lg">
-                        <h3 className="text-base font-medium text-card-foreground">视频模式识别专利</h3>
-                        <p className="text-xs text-muted-foreground mt-1">多模式视频分析技术</p>
+                        <h3 className="text-lg font-medium text-card-foreground">视频模式识别专利</h3>
+                        <p className="text-sm text-muted-foreground mt-1">多模式视频分析技术</p>
                       </div>
-                      <div className="flex-grow flex items-center justify-center overflow-hidden p-2">
-                        <img 
-                          src="/images/projects/video_pattern.png" 
-                          alt="视频模式识别专利" 
-                          className="max-h-32 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                        />
+                      <div className="flex-grow flex items-center justify-center overflow-hidden p-4">
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <img 
+                            src="/images/projects/video_pattern.png" 
+                            alt="视频模式识别专利" 
+                            className="max-h-[280px] w-auto object-contain transition-transform duration-300 group-hover:scale-102 shadow-sm"
+                          />
+                          <div className="absolute inset-0 pointer-events-none border border-border/20 rounded-md opacity-40"></div>
+                        </div>
                       </div>
-                      <div className="bg-gradient-to-br from-yellow-500/5 to-orange-500/5 dark:from-yellow-500/10 dark:to-orange-500/10 p-2 mt-auto rounded-b-lg">
-                        <p className="text-xs font-medium text-center text-foreground/80">中国专利号: ZL2022XXXXX</p>
+                      <div className="bg-gradient-to-br from-yellow-500/5 to-orange-500/5 dark:from-yellow-500/10 dark:to-orange-500/10 p-3 mt-auto rounded-b-lg">
+                        <p className="text-sm font-medium text-center text-foreground/80">中国专利号: ZL2022XXXXX</p>
                       </div>
                     </div>
 
                     {/* 专利项 3 */}
-                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-60 flex flex-col">
+                    <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg h-[420px] flex flex-col">
                       <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-green))] to-[hsl(var(--impressionist-blue))]"></div>
                       <div className="p-3 bg-gradient-to-br from-green-500/10 to-blue-500/10 dark:from-green-500/5 dark:to-blue-500/5 rounded-t-lg">
-                        <h3 className="text-base font-medium text-card-foreground">声音事件检测算法</h3>
-                        <p className="text-xs text-muted-foreground mt-1">深度学习声音分析系统</p>
+                        <h3 className="text-lg font-medium text-card-foreground">声音事件检测算法</h3>
+                        <p className="text-sm text-muted-foreground mt-1">深度学习声音分析系统</p>
                       </div>
-                      <div className="flex-grow flex items-center justify-center overflow-hidden p-2">
-                        <img 
-                          src="/images/projects/SED_alg.png" 
-                          alt="声音事件检测算法专利" 
-                          className="max-h-32 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                        />
+                      <div className="flex-grow flex items-center justify-center overflow-hidden p-4">
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          <img 
+                            src="/images/projects/SED_alg.png" 
+                            alt="声音事件检测算法专利" 
+                            className="max-h-[280px] w-auto object-contain transition-transform duration-300 group-hover:scale-102 shadow-sm"
+                          />
+                          <div className="absolute inset-0 pointer-events-none border border-border/20 rounded-md opacity-40"></div>
+                        </div>
                       </div>
-                      <div className="bg-gradient-to-br from-green-500/5 to-blue-500/5 dark:from-green-500/10 dark:to-blue-500/10 p-2 mt-auto rounded-b-lg">
-                        <p className="text-xs font-medium text-center text-foreground/80">中国专利号: ZL2021XXXXX</p>
+                      <div className="bg-gradient-to-br from-green-500/5 to-blue-500/5 dark:from-green-500/10 dark:to-blue-500/10 p-3 mt-auto rounded-b-lg">
+                        <p className="text-sm font-medium text-center text-foreground/80">中国专利号: ZL2021XXXXX</p>
                       </div>
                     </div>
                   </div>
