@@ -105,37 +105,32 @@ export function AIExpertise() {
                     {/* 图片展示区域 */}
                     <div className="grid grid-cols-2 gap-4">
                       {/* 第一张图片 */}
-                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg">
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
                         <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-blue))] to-[hsl(var(--impressionist-green))]"></div>
-                        <div className="relative h-40 w-full overflow-hidden rounded-lg">
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg">
                           <img 
                             src="/images/projects/ICME_network.png" 
                             alt="分层时序注意力网络架构" 
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="max-h-36 object-contain transition-transform duration-300 group-hover:scale-105"
                           />
                         </div>
-                        <div className="relative mt-2 px-1">
+                        <div className="px-1 pb-1 mt-auto">
                           <p className="text-xs font-medium text-foreground/80">网络架构</p>
                         </div>
                       </div>
                       
                       {/* 第二张图片 */}
-                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg">
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
                         <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-purple))] to-[hsl(var(--impressionist-blue))]"></div>
-                        <div className="relative h-40 w-full overflow-hidden rounded-lg">
-                          <div className="relative h-full w-full">
-                            <img 
-                              src="/images/projects/TS_network.png"
-                              alt="胜任教师网络" 
-                              className="object-cover w-full h-full"
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
-                              <p className="text-xs font-medium text-white">胜任教师网络</p>
-                            </div>
-                          </div>
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg">
+                          <img 
+                            src="/images/projects/TS_network.png"
+                            alt="胜任教师网络" 
+                            className="max-h-36 object-contain transition-transform duration-300 group-hover:scale-105"
+                          />
                         </div>
-                        <div className="relative mt-2 px-1">
-                          <p className="text-xs font-medium text-foreground/80">蒸馏框架</p>
+                        <div className="px-1 pb-1 mt-auto">
+                          <p className="text-xs font-medium text-foreground/80">蒸馆框架</p>
                         </div>
                       </div>
                     </div>
@@ -214,30 +209,120 @@ export function AIExpertise() {
                     {/* 图片展示区域 */}
                     <div className="grid grid-cols-2 gap-4">
                       {/* 第一张图片 - 可能没有具体图片，用创意设计替代 */}
-                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg">
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
                         <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-red))] to-[hsl(var(--impressionist-purple))]"></div>
-                        <div className="relative h-40 w-full overflow-hidden rounded-lg flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
                           <div className="text-center px-4">
                             <p className="text-sm font-medium text-foreground/90">通道注意力机制</p>
                             <p className="text-xs text-muted-foreground mt-2">自适应增强关键通道特征权重</p>
                           </div>
                         </div>
-                        <div className="relative mt-2 px-1">
+                        <div className="px-1 pb-1 mt-auto">
                           <p className="text-xs font-medium text-foreground/80">专利技术</p>
                         </div>
                       </div>
                       
                       {/* 第二张图片 */}
-                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg">
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
                         <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-blue))] to-[hsl(var(--impressionist-red))]"></div>
-                        <div className="relative h-40 w-full overflow-hidden rounded-lg flex items-center justify-center bg-gradient-to-br from-blue-50 to-red-50 dark:from-blue-900/20 dark:to-red-900/20">
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-red-50 dark:from-blue-900/20 dark:to-red-900/20">
                           <div className="text-center px-4">
                             <p className="text-sm font-medium text-foreground/90">残差门控结构</p>
                             <p className="text-xs text-muted-foreground mt-2">智能调控信息流优化网络性能</p>
                           </div>
                         </div>
-                        <div className="relative mt-2 px-1">
+                        <div className="px-1 pb-1 mt-auto">
                           <p className="text-xs font-medium text-foreground/80">创新设计</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </TabsContent>
+          
+          {/* 技术应用标签内容 */}
+          <TabsContent value="tech" className="mt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="bg-card border-border backdrop-blur-sm shadow-md overflow-hidden">
+                <CardHeader>
+                  <CardTitle className="text-card-foreground relative inline-block">
+                    <span className="relative z-10">声音AI相关专利展示</span>
+                    <span className="absolute bottom-0 left-0 w-full h-3 bg-[hsl(var(--impressionist-blue))]/20 -z-10 transform -rotate-1"></span>
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    三项核心专利技术及其技术应用
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col space-y-8">
+                    {/* 专利1：Transformer Cow */}
+                    <div className="flex flex-col space-y-4">
+                      <h3 className="text-lg font-medium text-card-foreground relative inline-block mb-2">
+                        <span className="relative z-10">声音事件检测专利架构</span>
+                        <span className="absolute bottom-0 left-0 w-full h-2 bg-[hsl(var(--impressionist-blue))]/20 -z-10"></span>
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        一种基于Transformer的声音事件检测方法与系统，提升了声音事件检测的精确度
+                      </p>
+                      
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
+                        <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-blue))] to-[hsl(var(--impressionist-green))]"></div>
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg">
+                          <iframe src="/images/projects/Transformer_cow.pdf#view=FitH" className="w-full h-40" title="声音事件检测专利架构"></iframe>
+                        </div>
+                        <div className="px-1 pb-1 mt-auto flex justify-between items-center">
+                          <p className="text-xs font-medium text-foreground/80">专利文件</p>
+                          <a href="/images/projects/Transformer_cow.pdf" target="_blank" className="text-xs text-primary hover:underline">查看完整PDF</a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* 专利2：视频模式识别 */}
+                    <div className="flex flex-col space-y-4 pt-6 mt-2 border-t border-border/70 shadow-sm">
+                      <h3 className="text-lg font-medium text-card-foreground relative inline-block mb-2">
+                        <span className="relative z-10">视频模式识别专利</span>
+                        <span className="absolute bottom-0 left-0 w-full h-2 bg-[hsl(var(--impressionist-blue))]/20 -z-10"></span>
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        一种用于视频内容分析与模式识别的智能系统
+                      </p>
+                      
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
+                        <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-yellow))] to-[hsl(var(--impressionist-orange))]"></div>
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg">
+                          <iframe src="/images/projects/video_pattern.pdf#view=FitH" className="w-full h-40" title="视频模式识别专利"></iframe>
+                        </div>
+                        <div className="px-1 pb-1 mt-auto flex justify-between items-center">
+                          <p className="text-xs font-medium text-foreground/80">专利文件</p>
+                          <a href="/images/projects/video_pattern.pdf" target="_blank" className="text-xs text-primary hover:underline">查看完整PDF</a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* 专利3：SED算法 */}
+                    <div className="flex flex-col space-y-4 pt-6 mt-2 border-t border-border/70 shadow-sm">
+                      <h3 className="text-lg font-medium text-card-foreground relative inline-block mb-2">
+                        <span className="relative z-10">SED算法专利</span>
+                        <span className="absolute bottom-0 left-0 w-full h-2 bg-[hsl(var(--impressionist-blue))]/20 -z-10"></span>
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        声音事件检测算法的专利实现及应用
+                      </p>
+                      
+                      <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-1 backdrop-blur-sm transition-all hover:bg-background/50 hover:shadow-lg flex flex-col h-48">
+                        <div className="absolute -inset-0.5 rounded-xl opacity-10 blur-sm transition-all group-hover:opacity-20 bg-gradient-to-br from-[hsl(var(--impressionist-purple))] to-[hsl(var(--impressionist-pink))]"></div>
+                        <div className="flex-grow flex items-center justify-center overflow-hidden rounded-lg">
+                          <iframe src="/images/projects/SED_alg.pdf#view=FitH" className="w-full h-40" title="SED算法专利"></iframe>
+                        </div>
+                        <div className="px-1 pb-1 mt-auto flex justify-between items-center">
+                          <p className="text-xs font-medium text-foreground/80">专利文件</p>
+                          <a href="/images/projects/SED_alg.pdf" target="_blank" className="text-xs text-primary hover:underline">查看完整PDF</a>
                         </div>
                       </div>
                     </div>
