@@ -1,19 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Moon, Sun, ArrowLeft } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+
+// 提取需要使用 useSearchParams 的部分到一个单独的组件
+function NavigationWithSearchParams() {
+  "use client";
+  const { useSearchParams } = require('next/navigation');
+  const searchParams = useSearchParams();
+  
+  return (
+    <nav className="hidden md:flex items-center space-x-8">
+      <NavLink href={`/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/Ahk2wKrREi4BVykCrg4cWlqGn7f?from=from_copylink`}>关于我</NavLink>
+      <NavLink href="#ai-expertise">AI专长</NavLink>
+      <NavLink href="#skills">技能</NavLink>
+      <NavLink href="#projects">项目</NavLink>
+      <NavLink href="#experience">经历</NavLink>
+      <NavLink href="/blog">浪潮沉思录</NavLink>
+      <NavLink href={`/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/PMo2wLeeZigWCykoDjdcqG00nLh`}>学习笔记</NavLink>
+    </nav>
+  );
+}
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   
   // Check if we're on the feishu page
   const isFeishuPage = pathname === "/feishu";
@@ -128,15 +146,9 @@ export function SiteHeader() {
         </div>
         
         <div className="flex items-center space-x-2">
-          <nav className="hidden md:flex items-center space-x-8">
-            <NavLink href="/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/Ahk2wKrREi4BVykCrg4cWlqGn7f?from=from_copylink">关于我</NavLink>
-            <NavLink href="#ai-expertise">AI专长</NavLink>
-            <NavLink href="#skills">技能</NavLink>
-            <NavLink href="#projects">项目</NavLink>
-            <NavLink href="#experience">经历</NavLink>
-            <NavLink href="/blog">浪潮沉思录</NavLink>
-            <NavLink href="/feishu?url=https://ocnair1qm2mu.feishu.cn/wiki/PMo2wLeeZigWCykoDjdcqG00nLh">学习笔记</NavLink>
-          </nav>
+          <Suspense fallback={<div className="hidden md:block h-8 w-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded"></div>}>
+            <NavigationWithSearchParams />
+          </Suspense>
           
           <Button 
             variant="ghost" 

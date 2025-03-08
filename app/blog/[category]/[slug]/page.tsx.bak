@@ -5,23 +5,13 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 
 // MDX components
 import { MDXComponents } from '@/components/mdx-components';
-
-interface BlogPostParams {
-  category: string;
-  slug: string;
-}
-
-interface BlogPostProps {
-  params: BlogPostParams;
-  searchParams?: Record<string, string | string[]>;
-}
 
 // 获取格式化的日期
 function getFormattedDate(dateString: string): string {
@@ -43,9 +33,13 @@ function getCategoryDisplayName(category: string): string {
   return categoryMap[category] || category;
 }
 
+type Props = {
+  params: { category: string; slug: string }
+}
+
 // 生成元数据
 export async function generateMetadata(
-  { params }: BlogPostProps
+  { params }: Props
 ): Promise<Metadata> {
   try {
     const filePath = path.join(process.cwd(), 'content/blog', params.category, `${params.slug}.md`);
@@ -70,7 +64,7 @@ export async function generateMetadata(
 }
 
 // 博客文章页面组件
-export default async function BlogPostPage({ params }: BlogPostProps) {
+export default async function BlogPostPage({ params }: Props) {
   const { category, slug } = params;
   
   try {
