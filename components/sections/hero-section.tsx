@@ -167,9 +167,7 @@ export function HeroSection() {
       
       {/* 高科技风格背景元素 - 蓝光效果（仅在黑暗模式下显示） */}
       <div className="dark:block hidden">
-        <div className="absolute w-[800px] h-[800px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[hsl(220,100%,50%)] rounded-full blur-[250px] opacity-[0.15] animate-pulse"></div>
-        <div className="absolute w-[400px] h-[400px] left-[65%] top-[30%] bg-[hsl(190,100%,50%)] rounded-full blur-[150px] opacity-[0.10] animate-pulse"></div>
-        <div className="absolute w-[300px] h-[300px] left-[20%] bottom-[20%] bg-[hsl(210,100%,60%)] rounded-full blur-[120px] opacity-[0.10] animate-pulse"></div>
+        <div className="absolute w-[900px] h-[900px] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-[hsl(220,100%,50%)] rounded-full blur-[250px] opacity-[0.15] animate-pulse"></div>
         
         {/* 数字雨风格的元素 */}
         <ClientDigitalRain />
