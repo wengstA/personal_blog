@@ -131,7 +131,7 @@ export function AIExpertise() {
                           />
                         </div>
                         <div className="px-1 pb-1 mt-auto">
-                          <p className="text-xs font-medium text-foreground/80">蒸馆框架</p>
+                          <p className="text-xs font-medium text-foreground/80">蒸馏框架</p>
                         </div>
                       </div>
                     </div>
