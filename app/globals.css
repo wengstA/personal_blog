@@ -147,3 +147,103 @@
   background-size: 16px 16px;
   @apply opacity-20;
 }
+
+/* 苹果风格文章样式 */
+.article-content .prose {
+  max-width: none;
+}
+
+/* 段落样式 */
+.article-content p {
+  font-size: 1.05rem !important; /* 比默认字体稍大一点 */
+  line-height: 2 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  color: #374151 !important; /* text-gray-700 */
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.dark .article-content p {
+  color: #e5e7eb !important; /* dark:text-gray-200 */
+}
+
+/* 列表项样式 */
+.article-content li {
+  font-size: 1.05rem !important; /* 比默认字体稍大一点 */
+  line-height: 2 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  color: #374151 !important; /* text-gray-700 */
+  font-weight: 400;
+}
+
+.dark .article-content li {
+  color: #e5e7eb !important; /* dark:text-gray-200 */
+}
+
+/* 标题样式 */
+.article-content h1 {
+  font-size: 2rem !important; /* 较大标题 */
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.2 !important;
+}
+
+.article-content h2 {
+  font-size: 1.5rem !important; /* 中等标题 */
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.3 !important;
+}
+
+.article-content h3 {
+  font-size: 1.25rem !important; /* 小标题 */
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.4 !important;
+}
+
+/* 代码块样式 */
+.article-content pre {
+  border-radius: 0.75rem;
+  background-color: #f3f4f6 !important;
+  margin: 2.5rem 0 !important;
+  overflow-x: auto;
+}
+
+.dark .article-content pre {
+  background-color: #1f2937 !important;
+}
+
+/* 图片样式 */
+.article-content img {
+  border-radius: 0.75rem;
+  margin: 3rem 0 !important;
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .article-content h1 {
+    font-size: 2.25rem !important; /* 大屏幕较大标题 */
+  }
+  
+  .article-content h2 {
+    font-size: 1.75rem !important; /* 大屏幕中等标题 */
+  }
+  
+  .article-content h3 {
+    font-size: 1.5rem !important; /* 大屏幕小标题 */
+  }
+  
+  .article-content p,
+  .article-content li {
+    font-size: 1.125rem !important; /* 大屏幕正文字体 */
+  }
+}

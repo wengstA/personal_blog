@@ -30,7 +30,7 @@ def attention(query, key, value):
 
 最新一代的AI模型已经突破了纯文本的限制，实现了图像、视频、音频等多模态内容的理解与生成。这种跨模态能力使AI系统能够更全面地感知和理解世界，为创造性应用提供了更广阔的空间。
 
-![多模态AI示例](/blog-images/multimodal-ai.jpg)
+![多模态AI示例](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*kN3YTAUj15wuRGamDyy1UA.png)
 
 ## 未来展望：挑战与机遇
 
