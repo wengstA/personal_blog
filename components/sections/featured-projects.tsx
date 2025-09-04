@@ -49,6 +49,28 @@ export function FeaturedProjects() {
       // image: "https://placehold.co/600x400/e2e8f0/1e293b?text=Data+Visualization",   
       image: "/images/projects/data-viz.png",
       link: "https://github.com/wengstA/data-viz"
+    },
+    {
+      title: "3D模型可视化对比工具",
+      description: (
+        <ul className="list-disc pl-5 space-y-1 text-sm">
+          <li>Tracker and Tagger :AI模型效果跟踪与标注平台</li>
+          <li>支持多种数据格式的可视化对比</li>
+          <li>支持数据标注，投票，数据筛选</li>
+          <li>
+            <a 
+              href="https://3-d-model-viewer-comparizon.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              在线体验
+            </a>
+          </li>
+        </ul>
+      ),
+      image: "/images/projects/Data Visualization Comparison.png",
+      link: "https://3-d-model-viewer-comparizon.vercel.app/"
     }
   ];
 
