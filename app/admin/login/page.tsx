@@ -3,9 +3,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Lock, User, Home } from 'lucide-react';
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,79 +21,97 @@ export default function AdminLogin() {
     setLoading(true);
     setError('');
 
-    // 这里仅作为演示，实际应用中应使用更安全的方式
-    // 例如使用JWT认证或OAuth等
-    if (username === 'admin' && password === 'password123') {
-      // 简单的认证方式：存储session到localStorage
-      localStorage.setItem('adminAuthenticated', 'true');
-      router.push('/admin/dashboard');
-    } else {
-      setError('用户名或密码不正确');
+    try {
+      const response = await fetch('/api/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      if (response.ok) {
+        router.push('/admin/dashboard');
+      } else {
+        setError('密码不正确，请重试');
+      }
+    } catch (error) {
+      setError('登录失败，请检查网络连接');
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">管理员登录</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">请登录以访问管理后台</p>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 px-4">
+      <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+        <CardHeader className="space-y-4 text-center">
+          <div className="mx-auto w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+            <Lock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           </div>
-          
+          <div>
+            <CardTitle className="text-2xl font-bold">管理员登录</CardTitle>
+            <CardDescription className="text-base mt-2">
+              请输入管理密码以访问后台
+            </CardDescription>
+          </div>
+        </CardHeader>
+        
+        <CardContent>
           {error && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
-              {error}
-            </div>
+            <Alert className="mb-6 border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/30">
+              <AlertDescription className="text-red-700 dark:text-red-400">
+                {error}
+              </AlertDescription>
+            </Alert>
           )}
           
-          <form onSubmit={handleLogin}>
-            <div className="mb-4">
-              <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                用户名
-              </label>
-              <input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                required
-              />
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-sm font-medium">
+                管理密码
+              </Label>
+              <div className="relative">
+                <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10 h-11"
+                  placeholder="请输入管理密码"
+                  required
+                />
+              </div>
             </div>
             
-            <div className="mb-6">
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                密码
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                required
-              />
-            </div>
-            
-            <button
+            <Button
               type="submit"
               disabled={loading}
-              className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md text-white font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out disabled:opacity-50"
+              className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-medium"
             >
-              {loading ? '登录中...' : '登录'}
-            </button>
+              {loading ? (
+                <div className="flex items-center space-x-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>登录中...</span>
+                </div>
+              ) : (
+                '登录'
+              )}
+            </Button>
           </form>
           
           <div className="mt-6 text-center">
-            <Link href="/" className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400">
-              返回首页
+            <Link 
+              href="/" 
+              className="inline-flex items-center space-x-1 text-sm text-muted-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              <Home className="w-4 h-4" />
+              <span>返回首页</span>
             </Link>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

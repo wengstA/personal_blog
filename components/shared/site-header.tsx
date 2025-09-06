@@ -42,6 +42,11 @@ export function SiteHeader() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   
+  // Don't render header on admin routes
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+  
   // Check if we're on the feishu page
   const isFeishuPage = pathname === "/feishu";
   

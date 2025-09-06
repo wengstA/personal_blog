@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { 
   ArrowLeft, 
@@ -19,35 +18,39 @@ import {
   FileText, 
   Settings,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import { ImageUpload } from '@/components/admin/image-upload';
 import { EnhancedMDEditor } from '@/components/admin/enhanced-md-editor';
 
-export default function NewArticle() {
+interface PageProps {
+  params: Promise<{ category: string; slug: string }>;
+}
+
+export default function EditArticle({ params }: PageProps) {
+  const [resolvedParams, setResolvedParams] = useState<{ category: string; slug: string } | null>(null);
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [category, setCategory] = useState('');
   const [excerpt, setExcerpt] = useState('');
-  const [content, setContent] = useState('# 开始写作\n\n在这里写下您的文章内容...');
+  const [content, setContent] = useState('');
   const [heroImage, setHeroImage] = useState('');
   const [readingTime, setReadingTime] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
-  const [activeTab, setActiveTab] = useState('editor');
   const router = useRouter();
 
-  // 自动生成slug
   useEffect(() => {
-    if (title) {
-      const generatedSlug = title
-        .toLowerCase()
-        .replace(/[^\w\s\u4e00-\u9fff]/gi, '') // Support Chinese characters
-        .replace(/\s+/g, '-')
-        .replace(/[^\w\-\u4e00-\u9fff]/gi, '');
-      setSlug(generatedSlug);
+    params.then(setResolvedParams);
+  }, [params]);
+
+  useEffect(() => {
+    if (resolvedParams) {
+      loadArticle();
     }
-  }, [title]);
+  }, [resolvedParams]);
 
   // Auto-calculate reading time
   useEffect(() => {
@@ -64,9 +67,40 @@ export default function NewArticle() {
     { value: 'personal_growth', label: '个人成长' }
   ];
 
+  const loadArticle = async () => {
+    if (!resolvedParams) return;
+
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/blog/${resolvedParams.category}/${resolvedParams.slug}`);
+      
+      if (!response.ok) {
+        throw new Error('文章不存在或加载失败');
+      }
+
+      const data = await response.json();
+      setTitle(data.frontmatter.title || '');
+      setSlug(data.slug || '');
+      setCategory(data.category || '');
+      setExcerpt(data.frontmatter.excerpt || '');
+      setContent(data.content || '');
+      setHeroImage(data.frontmatter.heroImage || '');
+      setReadingTime(data.frontmatter.readingTime || '');
+    } catch (error) {
+      setMessage({
+        type: 'error',
+        text: error instanceof Error ? error.message : '加载文章失败'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
+    if (!resolvedParams) return;
+
     e.preventDefault();
-    setLoading(true);
+    setSaving(true);
     setMessage({ type: '', text: '' });
 
     try {
@@ -75,15 +109,15 @@ export default function NewArticle() {
         throw new Error('请填写所有必填字段');
       }
 
-      const response = await fetch('/api/blog', {
-        method: 'POST',
+      const response = await fetch(`/api/blog/${resolvedParams.category}/${resolvedParams.slug}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title,
-          slug,
-          category,
+          newSlug: slug,
+          newCategory: category,
           excerpt,
           content,
           heroImage,
@@ -95,7 +129,7 @@ export default function NewArticle() {
         const result = await response.json();
         setMessage({
           type: 'success',
-          text: '文章创建成功！'
+          text: '文章更新成功！'
         });
         
         setTimeout(() => {
@@ -103,18 +137,29 @@ export default function NewArticle() {
         }, 1500);
       } else {
         const error = await response.json();
-        throw new Error(error.error || '创建文章失败');
+        throw new Error(error.error || '更新文章失败');
       }
       
     } catch (error) {
       setMessage({
         type: 'error',
-        text: error instanceof Error ? error.message : '创建文章失败'
+        text: error instanceof Error ? error.message : '更新文章失败'
       });
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="flex items-center space-x-3">
+          <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
+          <span className="text-lg text-muted-foreground">加载文章中...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -125,7 +170,10 @@ export default function NewArticle() {
             <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">创建新文章</h1>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">编辑文章</h1>
+              <p className="text-sm text-muted-foreground">{title || '加载中...'}</p>
+            </div>
           </div>
           <div className="flex items-center space-x-3">
             <Button variant="outline" asChild>
@@ -170,7 +218,7 @@ export default function NewArticle() {
                 <span>文章设置</span>
               </CardTitle>
               <CardDescription>
-                设置文章的基本信息和元数据
+                编辑文章的基本信息和元数据
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -200,7 +248,7 @@ export default function NewArticle() {
                     required
                   />
                   <p className="text-sm text-muted-foreground">
-                    自动生成，可手动编辑
+                    修改将改变文章URL
                   </p>
                 </div>
                 
@@ -288,10 +336,10 @@ export default function NewArticle() {
             </Button>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={saving}
               className="min-w-[120px]"
             >
-              {loading ? (
+              {saving ? (
                 <div className="flex items-center space-x-2">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                   <span>保存中...</span>
@@ -299,7 +347,7 @@ export default function NewArticle() {
               ) : (
                 <>
                   <Save className="w-4 h-4 mr-2" />
-                  发布文章
+                  保存更改
                 </>
               )}
             </Button>

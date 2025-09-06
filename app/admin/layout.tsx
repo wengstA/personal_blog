@@ -1,6 +1,7 @@
 import { Inter as FontSans } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "sonner";
 
 // 使用与主站相同的字体，但这是独立的布局
 const fontSans = FontSans({
@@ -20,11 +21,16 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans antialiased">
-      {/* 这是完全独立的管理后台布局，不包含博客的导航栏和页脚 */}
-      <ThemeProvider>
-        {children}
-      </ThemeProvider>
-    </div>
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="min-h-screen bg-gray-50 dark:bg-gray-900 font-sans antialiased">
+        {/* 完全独立的管理后台布局，覆盖主站布局，避免SiteHeader干扰 */}
+        <ThemeProvider>
+          <div className="min-h-screen">
+            {children}
+            <Toaster />
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
