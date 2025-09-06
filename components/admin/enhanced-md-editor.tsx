@@ -2,7 +2,6 @@
 
 import { useCallback, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { toast } from 'sonner';
 
 // Dynamically import the markdown editor to avoid SSR issues
 const MDEditor = dynamic(
@@ -37,7 +36,7 @@ export function EnhancedMDEditor({ value, onChange, height = 600 }: EnhancedMDEd
     return url;
   };
 
-  const handlePaste = useCallback(async (event: ClipboardEvent) => {
+  const handlePaste = useCallback(async (event: React.ClipboardEvent<HTMLDivElement>) => {
     const items = event.clipboardData?.items;
     if (!items) return;
 
@@ -63,17 +62,17 @@ export function EnhancedMDEditor({ value, onChange, height = 600 }: EnhancedMDEd
           const imageMarkdown = `\n![Image](${imageUrl})\n`;
           onChange(value.replace(loadingText, imageMarkdown));
           
-          toast.success('Image uploaded successfully!');
+          console.log('Image uploaded successfully!');
         } catch (error) {
           // Remove loading text on error
           onChange(value.replace('\n![Uploading...]()\n', ''));
-          toast.error(`Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+          console.error(`Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         }
       }
     }
   }, [value, onChange]);
 
-  const handleDrop = useCallback(async (event: DragEvent) => {
+  const handleDrop = useCallback(async (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     
     const files = event.dataTransfer?.files;
@@ -96,11 +95,11 @@ export function EnhancedMDEditor({ value, onChange, height = 600 }: EnhancedMDEd
           const imageMarkdown = `\n![${file.name}](${imageUrl})\n`;
           onChange(value.replace(loadingText, imageMarkdown));
           
-          toast.success('Image uploaded successfully!');
+          console.log('Image uploaded successfully!');
         } catch (error) {
           // Remove loading text on error
           onChange(value.replace('\n![Uploading...]()\n', ''));
-          toast.error(`Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+          console.error(`Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         }
       }
     }
